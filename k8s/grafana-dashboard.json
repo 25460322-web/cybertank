@@ -1,0 +1,42 @@
+{
+  "title": "Cybertank · Jugadores y flota",
+  "uid": "cybertank",
+  "schemaVersion": 39,
+  "time": { "from": "now-30m", "to": "now" },
+  "refresh": "5s",
+  "panels": [
+    {
+      "type": "timeseries", "title": "Jugadores conectados (CCU)",
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "sum(cybertank_players_connected)", "legendFormat": "CCU" } ]
+    },
+    {
+      "type": "timeseries", "title": "Duración del tick p99 (ms) · meta < 25 ms",
+      "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "histogram_quantile(0.99, sum by (le) (rate(cybertank_tick_seconds_bucket[1m]))) * 1000", "legendFormat": "tick p99" } ]
+    },
+    {
+      "type": "timeseries", "title": "GameServers por estado",
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "sum by (type) (agones_gameservers_count{fleet_name=\"cybertank-fleet\"})", "legendFormat": "{{type}}" } ]
+    },
+    {
+      "type": "timeseries", "title": "Nodos del clúster",
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "refId": "A", "expr": "count(kube_node_info)", "legendFormat": "nodos" } ]
+    },
+    {
+      "type": "timeseries", "title": "Disparos y derribos por segundo",
+      "gridPos": { "x": 0, "y": 16, "w": 24, "h": 7 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum(rate(cybertank_shots_total[1m]))", "legendFormat": "disparos/s" },
+        { "refId": "B", "expr": "sum(rate(cybertank_kills_total[1m]))", "legendFormat": "derribos/s" }
+      ]
+    }
+  ]
+}

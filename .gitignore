@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+
+# Credenciales y certificados: NUNCA al repositorio
+*.pem
+*.key
+*.crt
+key.json
+.env
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+infra/build/
+infra/plan.txt
+terraform.tfvars
+
+# Resultados de pruebas y modelos
+loadtest/*.csv
+loadtest/*.png
+loadtest/*.html
+ai/*.zip
+stream/

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cybertank</title>
+<style>
+  :root { --fondo:#0d1420; --panel:#162131; --texto:#e6edf5; --tenue:#8a9bb0; --yo:#2ec4b6; --rival:#ff9f43; --bala:#ffe66d; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--fondo); color:var(--texto); font:14px/1.4 system-ui, sans-serif; }
+  header { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px 16px; background:var(--panel); }
+  header h1 { font-size:18px; margin:0 12px 0 0; letter-spacing:.08em; color:var(--yo); }
+  input, button { font:inherit; padding:6px 10px; border-radius:6px; border:1px solid #2a3a50; background:#0d1420; color:var(--texto); }
+  input#servidor { width:260px; }
+  button { background:var(--yo); color:#062421; border:none; font-weight:600; cursor:pointer; }
+  #info { color:var(--tenue); margin-left:auto; font-variant-numeric:tabular-nums; }
+  main { display:flex; gap:16px; padding:16px; flex-wrap:wrap; }
+  canvas { width:100%; max-width:1200px; aspect-ratio:3/2; background:#101a28; border-radius:8px; cursor:crosshair; }
+  aside { flex:1; min-width:220px; }
+  aside h2 { font-size:13px; text-transform:uppercase; letter-spacing:.1em; color:var(--tenue); margin:0 0 6px; }
+  table { width:100%; border-collapse:collapse; margin-bottom:18px; font-variant-numeric:tabular-nums; }
+  td { padding:3px 4px; border-bottom:1px solid #1f2d40; }
+  td:last-child { text-align:right; }
+  .yo { color:var(--yo); font-weight:600; }
+  p.ayuda { color:var(--tenue); font-size:12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>CYBERTANK</h1>
+  <input id="nombre" placeholder="Tu nombre" maxlength="16">
+  <input id="servidor" value="ws://localhost:7654" title="ws://IP:PUERTO del GameServer">
+  <button id="conectar">Entrar a la partida</button>
+  <span id="info">desconectado</span>
+</header>
+<main>
+  <canvas id="arena" width="1200" height="800"></canvas>
+  <aside>
+    <h2>Partida</h2>
+    <table id="partida"></table>
+    <h2>Top 10 global</h2>
+    <table id="global"><tr><td>Configura ?lb=URL</td></tr></table>
+    <p class="ayuda">WASD o flechas: mover · Ratón: apuntar · Clic o Espacio: disparar.<br>
+    Parámetros de URL: <code>?server=ws://IP:PUERTO&amp;nombre=Ana&amp;lb=URL_TABLA_LIDERES</code></p>
+  </aside>
+</main>
+<script>
+const ANCHO = 1200, ALTO = 800, R = 22, VEL = 220;
+const cv = document.getElementById("arena"), ctx = cv.getContext("2d");
+const $ = (id) => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+if (params.get("server")) $("servidor").value = params.get("server");
+$("nombre").value = params.get("nombre") || "Tanque" + Math.floor(Math.random() * 900 + 100);
+const LB = params.get("lb");
+if (params.get("titulo")) document.title = "Cybertank · " + params.get("titulo");
+
+const id = Math.random().toString(36).slice(2, 10);
+let ws = null, yo = null, snap = { e: {}, b: [] }, ping = 0, fps = 0;
+const teclas = {}, raton = { x: 0, y: 0 };
+let disparando = false;
+
+addEventListener("keydown", (e) => { teclas[e.key.toLowerCase()] = true; if (e.key === " ") { disparando = true; e.preventDefault(); } });
+addEventListener("keyup", (e) => { teclas[e.key.toLowerCase()] = false; if (e.key === " ") disparando = false; });
+cv.addEventListener("mousemove", (e) => {
+  const r = cv.getBoundingClientRect();
+  raton.x = (e.clientX - r.left) * cv.width / r.width;
+  raton.y = (e.clientY - r.top) * cv.height / r.height;
+});
+cv.addEventListener("mousedown", () => disparando = true);
+addEventListener("mouseup", () => disparando = false);
+
+$("conectar").onclick = () => {
+  if (ws) ws.close();
+  ws = new WebSocket($("servidor").value.trim());
+  $("info").textContent = "conectando…";
+  ws.onopen = () => {
+    yo = { x: 100 + Math.random() * 1000, y: 100 + Math.random() * 600, a: 0, spawn: 0 };
+    $("info").textContent = "conectado";
+  };
+  ws.onmessage = (ev) => {
+    const d = JSON.parse(ev.data);
+    if (d.pong !== undefined) { ping = performance.now() - d.pong; return; }
+    snap = d;
+    const s = snap.e[id];
+    if (s && yo && s.spawn !== yo.spawn) { yo.x = s.x; yo.y = s.y; yo.spawn = s.spawn; }
+  };
+  ws.onclose = (ev) => { $("info").textContent = `desconectado ${ev.code} ${ev.reason || ""}`; yo = null; };
+};
+
+// 20 mensajes por segundo, igual que el jugador simulado de Locust
+setInterval(() => {
+  if (!ws || ws.readyState !== 1 || !yo) return;
+  ws.send(JSON.stringify({ id, nombre: $("nombre").value, x: yo.x, y: yo.y, a: yo.a, dispara: disparando, spawn: yo.spawn }));
+}, 50);
+setInterval(() => { if (ws && ws.readyState === 1) ws.send(JSON.stringify({ ping: performance.now() })); }, 1000);
+if (params.get("auto") === "1") $("conectar").onclick();   // ?auto=1 entra a la partida sin clic
+
+async function cargarGlobal() {
+  if (!LB) return;
+  try {
+    const top = await (await fetch(LB)).json();
+    $("global").innerHTML = top.map((j, i) => `<tr><td>${i + 1}. ${esc(j.jugador)}</td><td>${j.puntos}</td></tr>`).join("") || "<tr><td>Sin puntajes</td></tr>";
+  } catch { $("global").innerHTML = "<tr><td>Error al leer la tabla</td></tr>"; }
+}
+cargarGlobal(); setInterval(cargarGlobal, 10000);
+
+function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+function dibujarTanque(t, color, esYo) {
+  ctx.save();
+  ctx.translate(t.x, t.y);
+  ctx.rotate(t.a || 0);
+  ctx.fillStyle = color;
+  ctx.globalAlpha = 0.9;
+  ctx.fillRect(-R, -R * 0.75, R * 2, R * 1.5);           // casco
+  ctx.fillStyle = "#0d1420";
+  ctx.fillRect(-R, -R * 0.75, R * 2, 5);                 // orugas
+  ctx.fillRect(-R, R * 0.75 - 5, R * 2, 5);
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.arc(0, 0, R * 0.5, 0, Math.PI * 2); ctx.fill();   // torreta
+  ctx.fillRect(0, -3, R + 10, 6);                                         // cañón
+  ctx.restore();
+  const vida = Math.max(0, (t.vida ?? 100) / 100);
+  ctx.fillStyle = "#2a3a50"; ctx.fillRect(t.x - R, t.y - R - 14, R * 2, 5);
+  ctx.fillStyle = vida > 0.5 ? "#4cd97b" : vida > 0.25 ? "#ffd166" : "#ef476f";
+  ctx.fillRect(t.x - R, t.y - R - 14, R * 2 * vida, 5);
+  ctx.fillStyle = esYo ? "#2ec4b6" : "#e6edf5";
+  ctx.font = "12px system-ui"; ctx.textAlign = "center";
+  ctx.fillText(t.nombre || t.id, t.x, t.y - R - 20);
+}
+
+let previo = performance.now(), cuadros = 0, ultFps = previo;
+function cuadro(ahora) {
+  const dt = Math.min(0.05, (ahora - previo) / 1000); previo = ahora;
+  if (yo) {
+    let dx = 0, dy = 0;
+    if (teclas.w || teclas.arrowup) dy -= 1;
+    if (teclas.s || teclas.arrowdown) dy += 1;
+    if (teclas.a || teclas.arrowleft) dx -= 1;
+    if (teclas.d || teclas.arrowright) dx += 1;
+    const n = Math.hypot(dx, dy) || 1;
+    yo.x = Math.min(ANCHO - R, Math.max(R, yo.x + dx / n * VEL * dt));
+    yo.y = Math.min(ALTO - R, Math.max(R, yo.y + dy / n * VEL * dt));
+    yo.a = Math.atan2(raton.y - yo.y, raton.x - yo.x);
+  }
+  ctx.fillStyle = "#101a28"; ctx.fillRect(0, 0, ANCHO, ALTO);
+  ctx.strokeStyle = "#17243a"; ctx.lineWidth = 1;
+  for (let x = 0; x <= ANCHO; x += 50) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, ALTO); ctx.stroke(); }
+  for (let y = 0; y <= ALTO; y += 50) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(ANCHO, y); ctx.stroke(); }
+
+  for (const t of Object.values(snap.e)) {
+    if (t.id === id && yo) dibujarTanque({ ...t, x: yo.x, y: yo.y, a: yo.a }, "#2ec4b6", true);
+    else dibujarTanque(t, "#ff9f43", false);
+  }
+  ctx.fillStyle = "#ffe66d";
+  for (const [x, y] of snap.b) { ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill(); }
+
+  cuadros++;
+  if (ahora - ultFps > 1000) {
+    fps = cuadros; cuadros = 0; ultFps = ahora;
+    const filas = Object.values(snap.e).sort((a, b) => (b.puntos || 0) - (a.puntos || 0));
+    $("partida").innerHTML = filas.map((t) =>
+      `<tr class="${t.id === id ? "yo" : ""}"><td>${esc(t.nombre || t.id)}</td><td>${t.derribos ?? 0}/${t.muertes ?? 0}</td><td>${t.puntos ?? 0}</td></tr>`).join("");
+    if (ws && ws.readyState === 1) $("info").textContent = `ping ${ping.toFixed(0)} ms · ${filas.length}/10 tanques · ${fps} fps`;
+  }
+  requestAnimationFrame(cuadro);
+}
+requestAnimationFrame(cuadro);
+</script>
+</body>
+</html>

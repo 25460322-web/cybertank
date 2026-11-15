@@ -1,0 +1,70 @@
+name: cybertank-server-ci
+
+on:
+  push:
+    branches: [main]
+    paths: ["server/**", "k8s/fleet.yaml", ".github/workflows/deploy.yml"]
+  workflow_dispatch:
+
+permissions:
+  id-token: write      # OIDC: GitHub obtiene credenciales temporales de AWS, sin llaves guardadas
+  contents: read
+
+env:
+  AWS_REGION: us-east-2
+  ECR_REPOSITORY: cybertank-server
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+
+      - name: Pruebas
+        working-directory: server
+        run: pip install -r requirements.txt pytest && pytest -q
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Construir y publicar imagen
+        working-directory: server
+        run: |
+          IMG=${{ steps.ecr.outputs.registry }}/$ECR_REPOSITORY:${{ github.sha }}
+          docker build -t $IMG .
+          docker push $IMG
+          echo "Imagen publicada: $ECR_REPOSITORY:${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+
+  deploy:
+    # Se activa creando la variable de repositorio EKS_CLUSTER (p. ej. cybertank).
+    needs: build
+    if: vars.EKS_CLUSTER != ''
+    runs-on: ubuntu-latest
+    environment: produccion   # agrega "Required reviewers" en Settings → Environments para aprobación manual
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Actualizar la flota (Agones drena los servidores ocupados)
+        run: |
+          aws eks update-kubeconfig --name "${{ vars.EKS_CLUSTER }}" --region $AWS_REGION
+          IMG=${{ steps.ecr.outputs.registry }}/$ECR_REPOSITORY:${{ github.sha }}
+          sed -i "s|image: .*cybertank-server:.*|image: $IMG|" k8s/fleet.yaml
+          kubectl apply -f k8s/fleet.yaml
+          kubectl get fleet cybertank-fleet
+          kubectl get gameservers

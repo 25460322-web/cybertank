@@ -1,0 +1,26 @@
+# Práctica 3.3 · Clúster EKS creado a mano con eksctl
+#   eksctl create cluster -f aws/cluster.yaml
+# Revisa en agones.dev → "Kubernetes version support" que tu versión de Agones soporte esta versión.
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: cybertank
+  region: us-east-2
+  version: "1.33"
+iam:
+  withOIDC: true
+availabilityZones: ["us-east-2a", "us-east-2b"]
+vpc:
+  nat:
+    gateway: Disable          # los nodos van en subredes públicas: sin NAT (ahorra ~USD 33/mes)
+managedNodeGroups:
+  - name: juego
+    instanceType: c7i.xlarge  # 4 vCPU optimizadas a cómputo
+    minSize: 3
+    maxSize: 12
+    desiredCapacity: 3
+    privateNetworking: false  # IP pública: los jugadores se conectan directo al nodo
+    labels: { rol: juego }
+    iam:
+      withAddonPolicies:
+        autoScaler: true      # permiso para el Cluster Autoscaler

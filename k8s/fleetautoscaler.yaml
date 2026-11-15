@@ -1,0 +1,12 @@
+apiVersion: autoscaling.agones.dev/v1
+kind: FleetAutoscaler
+metadata:
+  name: cybertank-autoscaler
+spec:
+  fleetName: cybertank-fleet
+  policy:
+    type: Buffer
+    buffer:
+      bufferSize: 20%      # el 20 % de TODA la flota debe estar en Ready
+      minReplicas: 3
+      maxReplicas: 200
