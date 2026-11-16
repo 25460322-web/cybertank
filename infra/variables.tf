@@ -12,7 +12,7 @@ variable "version_k8s" {
 variable "tipo_instancia" {
   description = "Tipo de máquina de los nodos de servidores de juego"
   type        = string
-  default     = "c7i.xlarge"
+  default     = "c7i-flex.large" # la cuenta está en plan gratuito: solo tipos free-tier-eligible
 }
 
 variable "rol_github_arn" {

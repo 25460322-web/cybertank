@@ -15,7 +15,7 @@ spec:
         spec:
           containers:
             - name: cybertank
-              image: <CUENTA>.dkr.ecr.us-east-2.amazonaws.com/cybertank-server:1.0
+              image: 505435643729.dkr.ecr.us-east-2.amazonaws.com/cybertank-server:1.0
               env:
                 - name: LEADERBOARD_URL        # se llena en la práctica 3.5
                   value: ""

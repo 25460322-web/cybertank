@@ -15,6 +15,7 @@ resource "helm_release" "agones" {
   name             = "agones"
   repository       = "https://agones.dev/chart/stable"
   chart            = "agones"
+  version          = "1.59.0" # última con soporte para Kubernetes 1.33
   namespace        = "agones-system"
   create_namespace = true
   depends_on       = [module.eks]
@@ -51,6 +52,10 @@ resource "helm_release" "cluster_autoscaler" {
   set {
     name  = "awsRegion"
     value = var.region
+  }
+  set {
+    name  = "image.tag"
+    value = "v1.33.6" # debe coincidir con var.version_k8s
   }
   set {
     name  = "rbac.serviceAccount.name"

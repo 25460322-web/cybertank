@@ -199,6 +199,27 @@ cd ..          # raíz del proyecto
 eksctl create cluster -f aws/cluster.yaml
 kubectl get nodes -o wide
 ```
+> **Problema encontrado (cuenta de la escuela):** con `withOIDC: true` eksctl falló con
+> `AccessDenied ... iam:GetOpenIDConnectProvider ... explicit deny in a service control policy`.
+> La organización bloquea los proveedores OIDC de IAM. El plano de control quedó *ACTIVE* pero sin
+> complementos ni nodos. **Solución:** `withOIDC: false` (el Cluster Autoscaler y el vpc-cni usan
+> los permisos del rol del nodo) y completar lo que faltó:
+> ```bash
+> for a in vpc-cni kube-proxy coredns; do aws eks create-addon --cluster-name cybertank --addon-name $a; done
+> eksctl create nodegroup -f aws/cluster.yaml
+> ```
+>
+> **Segundo problema:** los nodos nunca se unieron. En *EC2 → Auto Scaling groups → Activity* aparecía
+> `InvalidParameterCombination - The specified instance type is not eligible for Free Tier`.
+> La cuenta está en **plan gratuito** (`aws freetier get-account-plan-state` → `FREE`, con créditos),
+> que solo permite tipos *free-tier-eligible*
+> (`aws ec2 describe-instance-types --filters Name=free-tier-eligible,Values=true`).
+> **Solución:** cambiar a **c7i-flex.large** (2 vCPU, 4 GiB, misma familia c7i), borrar el grupo atorado
+> y crearlo de nuevo:
+> ```bash
+> eksctl delete nodegroup --cluster cybertank --name juego --wait
+> eksctl create nodegroup -f aws/cluster.yaml
+> ```
 📸 **C17** — Final de `eksctl` ("EKS cluster "cybertank" in "us-east-2" region is ready") y `kubectl get nodes` con 3 nodos y su **EXTERNAL-IP**.
 📸 **C18** — Consola **EKS → Clusters → cybertank → Compute** con el node group `juego` (mín 3, máx 12).
 
@@ -217,14 +238,16 @@ helm repo add autoscaler https://kubernetes.github.io/autoscaler
 helm repo add agones https://agones.dev/chart/stable
 helm repo update
 helm install cluster-autoscaler autoscaler/cluster-autoscaler -n kube-system \
-  --set autoDiscovery.clusterName=cybertank --set awsRegion=us-east-2
+  --set autoDiscovery.clusterName=cybertank --set awsRegion=us-east-2 \
+  --set image.tag=v1.33.6        # la versión del autoscaler debe coincidir con la de Kubernetes (1.33)
 kubectl get pods -n kube-system | grep autoscaler
 ```
 📸 **C20** — El pod `cluster-autoscaler` en estado `Running`.
 
 ### Paso 4 · Agones
 ```bash
-helm install agones agones/agones -n agones-system --create-namespace
+# Agones 1.60+ solo soporta Kubernetes 1.34-1.36; para el clúster 1.33 se fija la 1.59 (soporta 1.33-1.35)
+helm install agones agones/agones -n agones-system --create-namespace --version 1.59.0
 kubectl get pods -n agones-system
 ```
 📸 **C21** — Los pods de Agones (`agones-controller`, `agones-allocator`, `agones-extensions`, `agones-ping`) en `Running`.
