@@ -54,8 +54,19 @@ def agones(ruta):
         req = urllib.request.Request(SDK + ruta, data=b"{}", method="POST",
                                      headers={"Content-Type": "application/json"})
         urllib.request.urlopen(req, timeout=1)
+        return True
     except Exception:
-        pass
+        return False
+
+
+async def avisar_ready(intentos=60):
+    """Reintenta /ready: en nodos cargados el sidecar de Agones puede tardar en arrancar y
+    un solo aviso perdido deja el GameServer en Scheduled para siempre (hallazgo de la 3.4)."""
+    for _ in range(intentos):
+        if await asyncio.to_thread(agones, "/ready"):
+            return True
+        await asyncio.sleep(0.5)
+    return False
 
 
 def reportar_puntos(nombre, puntos):
@@ -208,7 +219,7 @@ async def main():
     start_http_server(9100)                        # /metrics para Prometheus
     async with websockets.serve(jugador, "0.0.0.0", 7654):
         print("Cybertank escuchando en :7654 (métricas en :9100/metrics)", flush=True)
-        agones("/ready")                           # listo para recibir una partida
+        _tareas.add(asyncio.create_task(avisar_ready()))   # listo para recibir una partida
         await bucle()
 
 

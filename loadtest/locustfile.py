@@ -65,17 +65,22 @@ class Jugador(User):
             return Jugador.sala["addr"]
 
     def on_start(self):
+        self.ws = None
         self.id, self.n = "bot-" + uuid.uuid4().hex[:6], 0
         self.x, self.y = random.uniform(60, 1140), random.uniform(60, 740)
         self.a = random.uniform(-math.pi, math.pi)
-        t0 = time.perf_counter()
-        try:
-            self.ws = create_connection(f"ws://{self.pedir_servidor()}", timeout=5)
-            medir("conexion", t0)
-        except Exception as e:
-            medir("conexion", t0, e)
-            self.ws = None
-            raise StopUser()
+        # Como un jugador real en el matchmaking: si no hay servidor Ready (429 del allocator
+        # mientras el autoscaler crea nodos), espera y reintenta en vez de abandonar.
+        for _ in range(60):
+            t0 = time.perf_counter()
+            try:
+                self.ws = create_connection(f"ws://{self.pedir_servidor()}", timeout=5)
+                medir("conexion", t0)
+                return
+            except Exception as e:
+                medir("conexion", t0, e)
+                time.sleep(2)                     # gevent lo vuelve no bloqueante
+        raise StopUser()
 
     @task
     def jugar(self):
@@ -87,9 +92,10 @@ class Jugador(User):
         try:
             self.ws.send(json.dumps({"id": self.id, "nombre": self.id, "x": self.x, "y": self.y,
                                      "a": self.a, "dispara": random.random() < 0.1}))
-        except Exception as e:
+        except Exception as e:                    # el servidor se cerró: vuelve al matchmaking
             medir("envio", time.perf_counter(), e)
-            raise StopUser()
+            self.on_start()
+            return
         self.n += 1
         if self.n % 20 == 0:                      # un ping por segundo
             t0 = time.perf_counter()
@@ -102,7 +108,7 @@ class Jugador(User):
                 medir("rtt", t0, e)
 
     def on_stop(self):
-        if self.ws:
+        if getattr(self, "ws", None):
             self.ws.close()
 
 

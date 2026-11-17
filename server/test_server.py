@@ -63,3 +63,16 @@ def test_las_balas_desaparecen_al_salir_de_la_arena():
     server.procesar_entrada({"id": "ana", "x": 1170, "y": 400, "a": 0, "dispara": True})
     server.avanzar(0.5)
     assert server.balas == []
+
+
+def test_ready_se_reintenta_si_el_sidecar_aun_no_responde(monkeypatch):
+    # Hallazgo de la prueba de carga 3.4: un /ready perdido dejaba el GameServer en Scheduled.
+    import asyncio
+
+    async def sin_espera(_):
+        return None
+
+    respuestas = iter([False, False, True])
+    monkeypatch.setattr(server, "agones", lambda ruta: next(respuestas))
+    monkeypatch.setattr(server.asyncio, "sleep", sin_espera)
+    assert asyncio.run(server.avisar_ready(intentos=5)) is True
