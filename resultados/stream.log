@@ -1,0 +1,30 @@
+[2026-11-17 01:42:51,117] ip-172-31-43-209/INFO/locust.main: Starting Locust 2.46.0
+[2026-11-17 01:42:51,148] ip-172-31-43-209/INFO/locust.runners: ip-172-31-43-209_f4a56308d4fa47638e4f3547f5b46f6e (index 0) reported as ready. 1 workers connected.
+[2026-11-17 01:42:51,150] ip-172-31-43-209/INFO/locust.runners: ip-172-31-43-209_a689f444cadb420e92b5bfbdef9c4af9 (index 1) reported as ready. 2 workers connected.
+[2026-11-17 01:42:52,141] ip-172-31-43-209/INFO/locust.main: Run time limit set to 240 seconds
+[2026-11-17 01:42:52,142] ip-172-31-43-209/INFO/locust.runners: Sending spawn jobs of 500 users at 50.00 spawn rate to 2 ready workers
+[2026-11-17 01:43:01,474] ip-172-31-43-209/INFO/locust.runners: All users spawned: {"Espectador": 500} (500 total users)
+[2026-11-17 01:46:52,142] ip-172-31-43-209/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-17 01:46:52,142] ip-172-31-43-209/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-11-17 01:46:52,142] ip-172-31-43-209/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-11-17 01:46:52,193] ip-172-31-43-209/INFO/locust.main: Shutting down (exit code 0)
+[2026-11-17 01:46:52,195] ip-172-31-43-209/INFO/locust.runners: Worker 'ip-172-31-43-209_f4a56308d4fa47638e4f3547f5b46f6e' (index 0) quit. 0 workers ready.
+[2026-11-17 01:46:52,197] ip-172-31-43-209/INFO/locust.main: Shutting down (exit code 0)
+[2026-11-17 01:46:52,199] ip-172-31-43-209/INFO/locust.runners: Worker 'ip-172-31-43-209_a689f444cadb420e92b5bfbdef9c4af9' (index 1) quit. 0 workers ready.
+[2026-11-17 01:46:52,199] ip-172-31-43-209/INFO/locust.runners: The last worker quit, stopping test.
+[2026-11-17 01:46:53,144] ip-172-31-43-209/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      manifiesto                                                                     59000     0(0.00%) |    204       2    2538    200 |  245.85        0.00
+GET      segmento                                                                       59000     0(0.00%) |    245       3    1169    240 |  245.85        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                    118000     0(0.00%) |    224       2    2538    220 |  491.70        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      manifiesto                                                                            200    260    280    300    340    360    400    430    520    590   2500  59000
+GET      segmento                                                                              240    280    310    330    380    410    450    470    510    540   1200  59000
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            220    270    300    310    360    390    430    460    510    580   2500 118000
+

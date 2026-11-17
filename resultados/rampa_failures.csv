@@ -1,0 +1,8 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+WS,envio,"BrokenPipeError(32, 'Broken pipe')",88,2026-11-17T01:19:21Z,2026-11-17T01:22:29Z
+WS,conexion,HTTPError('429 Client Error: Too Many Requests for url: https://aa579fc983f9a4d6590a49a07192bcac-1224676978.us-east-2.elb.amazonaws.com/gameserverallocation'),552,2026-11-17T01:15:42Z,2026-11-17T01:20:19Z
+WS,conexion,WebSocketConnectionClosedException('Connection to remote host was lost.'),2,2026-11-17T01:24:50Z,2026-11-17T01:25:31Z
+WS,asignacion,HTTPError('429 Client Error: Too Many Requests for url: https://aa579fc983f9a4d6590a49a07192bcac-1224676978.us-east-2.elb.amazonaws.com/gameserverallocation'),552,2026-11-17T01:15:42Z,2026-11-17T01:20:19Z
+WS,rtt,"ConnectionResetError(104, 'Connection reset by peer')",53,2026-11-17T01:19:29Z,2026-11-17T01:21:40Z
+WS,rtt,JSONDecodeError('Expecting value: line 1 column 1 (char 0)'),38,2026-11-17T01:19:09Z,2026-11-17T01:21:26Z
+WS,envio,"ConnectionResetError(104, 'Connection reset by peer')",13,2026-11-17T01:19:39Z,2026-11-17T01:24:13Z

@@ -14,12 +14,18 @@ prefijo = sys.argv[1] if len(sys.argv) > 1 else "rampa"
 META_MS = 80
 
 h = pd.read_csv(f"{prefijo}_stats_history.csv")
-h = h[h["Name"] == "Aggregated"].copy()
+# Solo el ping del juego (rtt): "Aggregated" mezcla la espera del matchmaking y no es latencia.
+# Requiere correr Locust con --csv-full-history (guarda una fila por petición y por segundo).
+fuente = "rtt" if (h["Name"] == "rtt").any() else "Aggregated"
+h = h[h["Name"] == fuente].copy()
 h["p95"] = pd.to_numeric(h["95%"], errors="coerce")
 h = h.dropna(subset=["p95"])
+h = h[h["User Count"] > 0]
+h = h.loc[: h["User Count"].idxmax()]          # solo la subida de la rampa
+print(f"Latencia graficada: {fuente}")
 
 plt.figure(figsize=(8, 4.5))
-plt.plot(h["User Count"], h["p95"], label="p95 medido")
+plt.plot(h["User Count"], h["p95"], label=f"p95 de {fuente} (ventana móvil)")
 plt.axhline(META_MS, linestyle="--", color="tab:red", label=f"meta p95 = {META_MS} ms")
 plt.xlabel("Jugadores simulados (CCU)")
 plt.ylabel("Latencia p95 (ms)")

@@ -1,0 +1,81 @@
+[2026-11-17 01:49:22,529] ip-172-31-43-209/INFO/locust.main: Starting Locust 2.46.0
+[2026-11-17 01:49:22,560] ip-172-31-43-209/INFO/locust.runners: ip-172-31-43-209_c604919312254003b790197ac4169576 (index 0) reported as ready. 1 workers connected.
+[2026-11-17 01:49:22,561] ip-172-31-43-209/INFO/locust.runners: ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 (index 1) reported as ready. 2 workers connected.
+[2026-11-17 01:49:23,551] ip-172-31-43-209/INFO/locust.main: Run time limit set to 360 seconds
+[2026-11-17 01:49:23,552] ip-172-31-43-209/INFO/locust.runners: Sending spawn jobs of 300 users at 1.00 spawn rate to 2 ready workers
+[2026-11-17 01:51:32,909] ip-172-31-43-209/WARNING/root: CPU usage above 90%! This may constrain your throughput and may even give inconsistent response time measurements! See https://docs.locust.io/en/stable/running-distributed.html for how to distribute the load over multiple CPU cores or machines
+[2026-11-17 01:51:33,114] ip-172-31-43-209/WARNING/root: CPU usage above 90%! This may constrain your throughput and may even give inconsistent response time measurements! See https://docs.locust.io/en/stable/running-distributed.html for how to distribute the load over multiple CPU cores or machines
+[2026-11-17 01:51:33,294] ip-172-31-43-209/WARNING/locust.runners: Worker ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 (index 1) exceeded cpu threshold (will only log this once per worker)
+[2026-11-17 01:51:33,465] ip-172-31-43-209/WARNING/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 (index 0) exceeded cpu threshold (will only log this once per worker)
+[2026-11-17 01:52:49,759] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:52:50,592] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 self-healed with heartbeat, setting state to running.
+[2026-11-17 01:52:59,766] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:53:01,434] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 self-healed with heartbeat, setting state to running.
+[2026-11-17 01:53:04,771] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:53:05,013] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 self-healed with heartbeat, setting state to running.
+[2026-11-17 01:53:20,784] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:53:21,478] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 self-healed with heartbeat, setting state to running.
+[2026-11-17 01:53:29,792] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:53:31,796] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:53:32,643] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 self-healed with heartbeat, setting state to running.
+[2026-11-17 01:53:51,837] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:53:53,406] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 self-healed with heartbeat, setting state to running.
+[2026-11-17 01:53:57,842] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:53:58,843] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:54:03,849] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:54:05,851] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:54:06,852] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:54:07,853] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:54:07,853] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 failed to send heartbeat, setting state to missing.
+[2026-11-17 01:54:07,853] ip-172-31-43-209/INFO/locust.runners: The last worker went missing, stopping test.
+[2026-11-17 01:54:08,619] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 self-healed with heartbeat, setting state to running.
+[2026-11-17 01:54:08,958] ip-172-31-43-209/INFO/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 self-healed with heartbeat, setting state to running.
+[2026-11-17 01:54:10,622] ip-172-31-43-209/WARNING/locust.runners: CPU usage was too high at some point during the test! See https://docs.locust.io/en/stable/running-distributed.html for how to distribute the load over multiple CPU cores or machines
+[2026-11-17 01:54:10,623] ip-172-31-43-209/INFO/locust.runners: ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 (index 1) reported that it has stopped
+[2026-11-17 01:54:10,625] ip-172-31-43-209/INFO/locust.runners: ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 (index 1) reported as ready. 2 workers connected.
+[2026-11-17 01:54:11,315] ip-172-31-43-209/WARNING/locust.runners: Worker ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4 (index 1) exceeded cpu threshold (will only log this once per worker)
+[2026-11-17 01:54:12,894] ip-172-31-43-209/WARNING/locust.runners: CPU usage was too high at some point during the test! See https://docs.locust.io/en/stable/running-distributed.html for how to distribute the load over multiple CPU cores or machines
+[2026-11-17 01:54:12,894] ip-172-31-43-209/INFO/locust.runners: ip-172-31-43-209_c604919312254003b790197ac4169576 (index 0) reported that it has stopped
+[2026-11-17 01:54:12,895] ip-172-31-43-209/INFO/locust.runners: ip-172-31-43-209_c604919312254003b790197ac4169576 (index 0) reported as ready. 2 workers connected.
+[2026-11-17 01:54:13,861] ip-172-31-43-209/WARNING/locust.runners: Worker ip-172-31-43-209_c604919312254003b790197ac4169576 (index 0) exceeded cpu threshold (will only log this once per worker)
+[2026-11-17 01:54:23,500] ip-172-31-43-209/INFO/locust.runners: All users spawned: {"Jugador": 300} (300 total users)
+[2026-11-17 01:55:09,713] ip-172-31-43-209/WARNING/root: CPU usage above 90%! This may constrain your throughput and may even give inconsistent response time measurements! See https://docs.locust.io/en/stable/running-distributed.html for how to distribute the load over multiple CPU cores or machines
+[2026-11-17 01:55:23,552] ip-172-31-43-209/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-17 01:55:23,552] ip-172-31-43-209/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-11-17 01:55:23,553] ip-172-31-43-209/WARNING/locust.runners: CPU usage was too high at some point during the test! See https://docs.locust.io/en/stable/running-distributed.html for how to distribute the load over multiple CPU cores or machines
+[2026-11-17 01:55:23,553] ip-172-31-43-209/INFO/locust.main: Shutting down (exit code 0)
+[2026-11-17 01:55:23,554] ip-172-31-43-209/INFO/locust.runners: Worker 'ip-172-31-43-209_c0a0d0869b654ab79e0dcc8356fec2b4' (index 1) quit. 0 workers ready.
+[2026-11-17 01:55:24,234] ip-172-31-43-209/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-11-17 01:55:24,555] ip-172-31-43-209/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+WS       asignacion                                                                       156   94(60.26%) |   1482      37   24216    460 |    0.44        0.26
+WS       conexion                                                                         702   94(13.39%) |  17366       4   42216  18000 |    1.96        0.26
+WS       envio                                                                             70  70(100.00%) |      0       0       0      0 |    0.20        0.20
+WS       rtt                                                                             8613    66(0.77%) |     38       1     773     11 |   24.06        0.18
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      9541   324(3.40%) |   1336       0   42216     13 |   26.66        0.91
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+WS       asignacion                                                                            460    530    610    840   2800  11000  14000  18000  24000  24000  24000    156
+WS       conexion                                                                            18000  29000  31000  34000  37000  39000  41000  42000  42000  42000  42000    702
+WS       envio                                                                                   0      0      0      0      0      0      0      0      0      0      0     70
+WS       rtt                                                                                    11     20     24     32     67    200    390    460    610    770    770   8613
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             13     22     34     49    300   2800  31000  37000  42000  42000  42000   9541
+
+Error report
+# occurrences      Error                                                                                               
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+48                 WS rtt: JSONDecodeError('Expecting value: line 1 column 1 (char 0)')                                
+67                 WS envio: BrokenPipeError(32, 'Broken pipe')                                                        
+18                 WS rtt: ConnectionResetError(104, 'Connection reset by peer')                                       
+94                 WS asignacion: HTTPError('429 Client Error: Too Many Requests for url: https://aa579fc983f9a4d6590a49a07192bcac-1224676978.us-east-2.elb.amazonaws.com/gameserverallocation')
+94                 WS conexion: HTTPError('429 Client Error: Too Many Requests for url: https://aa579fc983f9a4d6590a49a07192bcac-1224676978.us-east-2.elb.amazonaws.com/gameserverallocation')
+3                  WS envio: ConnectionResetError(104, 'Connection reset by peer')                                     
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+
+[2026-11-17 01:55:28,491] ip-172-31-43-209/WARNING/locust.runners: CPU usage was too high at some point during the test! See https://docs.locust.io/en/stable/running-distributed.html for how to distribute the load over multiple CPU cores or machines
+[2026-11-17 01:55:28,491] ip-172-31-43-209/INFO/locust.main: Shutting down (exit code 0)

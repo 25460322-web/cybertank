@@ -1,0 +1,19 @@
+# Práctica 3.4 · Ajuste tras la rampa: con buffer 20 % y revisión cada 30 s (valor por
+# omisión) la carga se comía los servidores Ready antes de que el autoscaler reaccionara
+# (Ready = 0 y el allocator devolvía 429). Se revisa cada 5 s y se guarda más holgura.
+apiVersion: autoscaling.agones.dev/v1
+kind: FleetAutoscaler
+metadata:
+  name: cybertank-autoscaler
+spec:
+  fleetName: cybertank-fleet
+  policy:
+    type: Buffer
+    buffer:
+      bufferSize: 30%      # más holgura para picos
+      minReplicas: 5       # nunca menos de 5 servidores (50 jugadores) listos al arrancar
+      maxReplicas: 200
+  sync:
+    type: FixedInterval
+    fixedInterval:
+      seconds: 5           # antes 30 s

@@ -1,0 +1,3 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+WS,conexion,HTTPError('429 Client Error: Too Many Requests for url: https://aa579fc983f9a4d6590a49a07192bcac-1224676978.us-east-2.elb.amazonaws.com/gameserverallocation'),107,2026-11-17T01:27:18Z,2026-11-17T01:27:45Z
+WS,asignacion,HTTPError('429 Client Error: Too Many Requests for url: https://aa579fc983f9a4d6590a49a07192bcac-1224676978.us-east-2.elb.amazonaws.com/gameserverallocation'),107,2026-11-17T01:27:18Z,2026-11-17T01:27:45Z
