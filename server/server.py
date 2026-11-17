@@ -19,7 +19,7 @@ import websockets
 from prometheus_client import Counter, Gauge, Histogram, start_http_server
 
 # ---------------------------------------------------------------- reglas del juego
-MAX_JUGADORES = 12          # partida 5 vs 5
+MAX_JUGADORES = 10          # partida 5 vs 5
 TICK_S = 0.05               # 20 ticks por segundo
 ANCHO, ALTO = 1200, 800     # tamaño de la arena (px)
 RADIO_TANQUE = 22
