@@ -13,7 +13,17 @@ module "eks" {
   create_cloudwatch_log_group = false
   cluster_enabled_log_types   = []
 
+  # La SCP de la escuela niega iam:*OpenIDConnectProvider → sin IRSA. El vpc-cni y el
+  # Cluster Autoscaler usan los permisos del rol de los nodos (igual que con eksctl en 3.3).
+  enable_irsa = false
+  cluster_addons = {
+    vpc-cni    = { before_compute = true }
+    kube-proxy = {}
+    coredns    = {}
+  }
+
   # Permite que el pipeline de GitHub Actions (práctica 3.2) actualice la flota
+  # (en esta cuenta es el usuario IAM github-deployer, porque OIDC está bloqueado)
   access_entries = var.rol_github_arn == "" ? {} : {
     github = {
       principal_arn = var.rol_github_arn
@@ -31,17 +41,18 @@ module "eks" {
 
   eks_managed_node_groups = {
     juego = {
-      instance_types = [var.tipo_instancia]
-      min_size       = var.nodos_min
-      max_size       = var.nodos_max
-      desired_size   = var.nodos_min
-      labels         = { rol = "juego" }
+      instance_types               = [var.tipo_instancia]
+      min_size                     = var.nodos_min
+      max_size                     = var.nodos_max
+      desired_size                 = var.nodos_min
+      labels                       = { rol = "juego" }
+      iam_role_additional_policies = { autoscaler = aws_iam_policy.autoscaler.arn }
     }
   }
 
   node_security_group_additional_rules = {
     partidas_tcp = {
-      description = "Jugadores -> GameServers (WebSocket)"
+      description = "Jugadores a GameServers (WebSocket)"
       type        = "ingress"
       protocol    = "tcp"
       from_port   = 7000
@@ -49,7 +60,7 @@ module "eks" {
       cidr_blocks = ["0.0.0.0/0"]
     }
     partidas_udp = {
-      description = "Jugadores -> GameServers (UDP)"
+      description = "Jugadores a GameServers (UDP)"
       type        = "ingress"
       protocol    = "udp"
       from_port   = 7000
@@ -57,7 +68,7 @@ module "eks" {
       cidr_blocks = ["0.0.0.0/0"]
     }
     plano_control = {
-      description                   = "Plano de control -> webhooks de Agones"
+      description                   = "Plano de control a webhooks de Agones"
       type                          = "ingress"
       protocol                      = "-1"
       from_port                     = 0
@@ -70,5 +81,5 @@ module "eks" {
 resource "aws_ecr_repository" "servidor" {
   name                 = "cybertank-server"
   image_tag_mutability = "MUTABLE"
-  force_delete         = true   # terraform destroy borra también las imágenes
+  force_delete         = true # terraform destroy borra también las imágenes
 }

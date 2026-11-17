@@ -16,7 +16,7 @@ variable "tipo_instancia" {
 }
 
 variable "rol_github_arn" {
-  description = "ARN del rol github-deployer (práctica 3.2); vacío = sin acceso del pipeline"
+  description = "ARN de github-deployer (usuario IAM en esta cuenta; rol OIDC donde se permita); vacío = sin acceso del pipeline"
   type        = string
   default     = ""
 }
