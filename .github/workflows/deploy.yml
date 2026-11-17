@@ -6,8 +6,9 @@ on:
     paths: ["server/**", "k8s/fleet.yaml", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
+# La SCP de la escuela bloquea los proveedores OIDC de IAM, así que GitHub usa las llaves
+# del usuario IAM github-deployer (permisos mínimos) guardadas como secrets del repositorio.
 permissions:
-  id-token: write      # OIDC: GitHub obtiene credenciales temporales de AWS, sin llaves guardadas
   contents: read
 
 env:
@@ -29,7 +30,8 @@ jobs:
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - id: ecr
@@ -54,7 +56,8 @@ jobs:
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - id: ecr

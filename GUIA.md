@@ -296,39 +296,43 @@ kubectl get gameservers -w
 
 ## 4 · Práctica 3.2 — Pipeline CI/CD con GitHub Actions → ECR → EKS
 
-AWS no usa llaves JSON: GitHub obtiene credenciales temporales con **OIDC** (lo recomendado en producción).
+Lo recomendado en producción es **OIDC** (GitHub obtiene credenciales temporales sin llaves guardadas).
+> **En la cuenta de la escuela no se puede:** la SCP niega `iam:CreateOpenIDConnectProvider` (el mismo bloqueo de la 3.3).
+> Alternativa usada: un **usuario IAM `github-deployer` con permisos mínimos** cuyas llaves se guardan como
+> **secrets cifrados** de GitHub (nunca en el código). Riesgo: son llaves de larga duración → rotarlas
+> (`aws iam create-access-key` / `delete-access-key`) y borrarlas al terminar el curso.
 
-### Paso 1 · Proveedor OIDC y rol para GitHub
-Edita `aws/github-oidc-trust.json` (pon tu `<CUENTA>`, `<USUARIO_GITHUB>` y `<REPO>`) y `aws/github-deployer-policy.json` (pon `<CUENTA>`). Luego:
+### Paso 1 · Usuario IAM con permisos mínimos
+Edita `aws/github-deployer-policy.json` (pon `<CUENTA>`): solo permite subir a ECR `cybertank-server` y `eks:DescribeCluster`.
 ```bash
-aws iam create-open-id-connect-provider --url https://token.actions.githubusercontent.com \
-  --client-id-list sts.amazonaws.com
-aws iam create-role --role-name github-deployer --assume-role-policy-document file://aws/github-oidc-trust.json
-aws iam put-role-policy --role-name github-deployer --policy-name cybertank-deploy \
-  --policy-document file://aws/github-deployer-policy.json
-aws iam get-role --role-name github-deployer --query Role.Arn --output text
+aws iam create-user --user-name github-deployer
+aws iam put-user-policy --user-name github-deployer --policy-name cybertank-deploy   --policy-document file://aws/github-deployer-policy.json
 ```
-📸 **C27** — Consola **IAM → Roles → github-deployer → Trust relationships** (se ve `token.actions.githubusercontent.com` y tu repo).
+📸 **C27** — `aws iam get-user-policy --user-name github-deployer --policy-name cybertank-deploy` (los 3 permisos).
 
-### Paso 2 · Dejar que el rol actualice la flota en EKS
+### Paso 2 · Dejar que el usuario actualice la flota en EKS
 ```bash
 export CUENTA=$(aws sts get-caller-identity --query Account --output text)
-ROL=arn:aws:iam::$CUENTA:role/github-deployer
-aws eks create-access-entry --cluster-name cybertank --principal-arn $ROL
-aws eks associate-access-policy --cluster-name cybertank --principal-arn $ROL \
-  --policy-arn arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy \
-  --access-scope type=cluster
+U=arn:aws:iam::$CUENTA:user/github-deployer
+aws eks create-access-entry --cluster-name cybertank --principal-arn $U
+aws eks associate-access-policy --cluster-name cybertank --principal-arn $U   --policy-arn arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy   --access-scope type=cluster
 ```
-📸 **C28** — Consola **EKS → cybertank → Access** con la entrada `github-deployer`.
+📸 **C28** — `aws eks list-access-entries` / `list-associated-access-policies` con `github-deployer`.
 
-### Paso 3 · Variables del repositorio
-GitHub → *Settings → Secrets and variables → Actions → Variables*:
-- `AWS_ROLE_ARN` = el ARN del paso 1
-- `EKS_CLUSTER` = `cybertank`
+### Paso 3 · Secrets, variable y aprobación en GitHub
+Las llaves pasan directo de AWS a GitHub **sin mostrarse en pantalla**:
+```bash
+K=$(aws iam create-access-key --user-name github-deployer      --query "AccessKey.[AccessKeyId,SecretAccessKey]" --output text)
+printf '%s' "$(echo "$K" | cut -f1)" | gh secret set AWS_ACCESS_KEY_ID
+printf '%s' "$(echo "$K" | cut -f2)" | gh secret set AWS_SECRET_ACCESS_KEY
+unset K
+gh variable set EKS_CLUSTER --body cybertank
+```
+**Aprobación manual:** *Settings → Environments → produccion → Required reviewers* → agrégate.
+> En GitHub gratuito los *Required reviewers* solo funcionan en repos **públicos** (privados requieren Pro);
+> por eso el repo se hizo público. Los secrets siguen cifrados y no se ven.
 
-Para la **aprobación manual** (como el paso 6 del pipeline del material): *Settings → Environments → produccion → Required reviewers* → agrégate.
-
-📸 **C29** — Las dos variables creadas (no son secretos; se pueden ver).
+📸 **C29** — *Settings → Secrets and variables → Actions*: los 2 secrets (valores ocultos) y la variable `EKS_CLUSTER`.
 📸 **C30** — El environment `produccion` con *Required reviewers*.
 
 ### Paso 4 · Primer pipeline en verde
@@ -712,8 +716,8 @@ CCU/Allocated/nodos subiendo → top 10 global actualizándose → `terraform de
 | C24 | Partida jugándose en AWS | Navegador |
 | C25 | Servidor a Shutdown y reposición | Git Bash |
 | C26 | Borrado de un pod Allocated | Git Bash |
-| C27 | Rol github-deployer (trust OIDC) | Consola IAM |
-| C28 | Access entry en EKS | Consola EKS |
+| C27 | Usuario github-deployer y su política | Git Bash |
+| C28 | Access entry en EKS | Git Bash |
 | C29 | Variables del repositorio | GitHub |
 | C30 | Environment con aprobación | GitHub |
 | C31 | Pipeline en verde | GitHub Actions |
