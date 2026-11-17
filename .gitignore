@@ -27,3 +27,6 @@ loadtest/*.html
 ai/*.zip
 stream/
 infra/plan_salida.txt
+infra/apply_salida*.txt
+infra/destroy*.txt
+infra/errored.tfstate
