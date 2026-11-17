@@ -66,7 +66,7 @@ resource "aws_lambda_function" "leaderboard" {
 resource "aws_apigatewayv2_api" "leaderboard" {
   name          = "${local.nombre}-leaderboard"
   protocol_type = "HTTP"
-  target        = aws_lambda_function.leaderboard.arn   # "quick create": ruta $default + etapa automática
+  target        = aws_lambda_function.leaderboard.arn # "quick create": ruta $default + etapa automática
   cors_configuration {
     allow_origins = ["*"]
     allow_methods = ["GET", "POST"]

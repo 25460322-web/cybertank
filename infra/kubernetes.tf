@@ -22,20 +22,33 @@ resource "helm_release" "agones" {
 }
 
 # ---------------------------------------------------------------- Cluster Autoscaler (capa de nodos)
-module "autoscaler_irsa" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "~> 5.0"
-
-  role_name                        = "${local.nombre}-cluster-autoscaler"
-  attach_cluster_autoscaler_policy = true
-  cluster_autoscaler_cluster_names = [module.eks.cluster_name]
-
-  oidc_providers = {
-    principal = {
-      provider_arn               = module.eks.oidc_provider_arn
-      namespace_service_accounts = ["kube-system:cluster-autoscaler"]
-    }
-  }
+# Sin IRSA (OIDC bloqueado por la SCP): la política va en el rol de los nodos (ver eks.tf).
+resource "aws_iam_policy" "autoscaler" {
+  name = "${local.nombre}-cluster-autoscaler"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "autoscaling:DescribeAutoScalingGroups", "autoscaling:DescribeAutoScalingInstances",
+          "autoscaling:DescribeLaunchConfigurations", "autoscaling:DescribeScalingActivities",
+          "autoscaling:DescribeTags", "ec2:DescribeImages", "ec2:DescribeInstanceTypes",
+          "ec2:DescribeLaunchTemplateVersions", "ec2:GetInstanceTypesFromInstanceRequirements",
+          "eks:DescribeNodegroup"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["autoscaling:SetDesiredCapacity", "autoscaling:TerminateInstanceInAutoScalingGroup"]
+        Resource = "*"
+        Condition = {
+          StringEquals = { "aws:ResourceTag/k8s.io/cluster-autoscaler/${local.nombre}" = "owned" }
+        }
+      }
+    ]
+  })
 }
 
 resource "helm_release" "cluster_autoscaler" {
@@ -56,13 +69,5 @@ resource "helm_release" "cluster_autoscaler" {
   set {
     name  = "image.tag"
     value = "v1.33.6" # debe coincidir con var.version_k8s
-  }
-  set {
-    name  = "rbac.serviceAccount.name"
-    value = "cluster-autoscaler"
-  }
-  set {
-    name  = "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = module.autoscaler_irsa.iam_role_arn
   }
 }

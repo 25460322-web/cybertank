@@ -26,3 +26,4 @@ loadtest/*.png
 loadtest/*.html
 ai/*.zip
 stream/
+infra/plan_salida.txt

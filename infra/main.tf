@@ -7,7 +7,7 @@ terraform {
   }
   # Estado remoto en S3 con bloqueo nativo (use_lockfile) para trabajar en equipo.
   backend "s3" {
-    bucket       = "cybertank-tfstate-<TU-ID>"
+    bucket       = "cybertank-tfstate-25460322"
     key          = "cybertank/terraform.tfstate"
     region       = "us-east-2"
     encrypt      = true
@@ -23,5 +23,5 @@ provider "aws" {
 }
 
 locals {
-  nombre = "cybertank-${terraform.workspace}"   # cybertank-default, cybertank-prod, ...
+  nombre = "cybertank-${terraform.workspace}" # cybertank-default, cybertank-prod, ...
 }
