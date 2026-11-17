@@ -18,7 +18,7 @@ spec:
               image: 505435643729.dkr.ecr.us-east-2.amazonaws.com/cybertank-server:1.0
               env:
                 - name: LEADERBOARD_URL        # se llena en la práctica 3.5
-                  value: "https://u1ekizj1z8.execute-api.us-east-2.amazonaws.com"
+                  value: "https://82pystfmgl.execute-api.us-east-2.amazonaws.com"
               ports:
                 - name: metrics                # lo leerá Prometheus en la práctica 3.4
                   containerPort: 9100

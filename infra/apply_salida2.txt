@@ -1,0 +1,573 @@
+﻿data.archive_file.codigo: Reading...
+data.archive_file.codigo: Read complete after 0s [id=db09be97a33fb80cac135cb78aa8061afc24f050]
+data.aws_availability_zones.disponibles: Reading...
+data.aws_iam_policy_document.asumir_lambda: Reading...
+module.eks.data.aws_iam_policy_document.assume_role_policy[0]: Reading...
+module.eks.data.aws_partition.current[0]: Reading...
+module.eks.data.aws_caller_identity.current[0]: Reading...
+aws_ecr_repository.servidor: Refreshing state... [id=cybertank-server]
+aws_iam_policy.autoscaler: Refreshing state... [id=arn:aws:iam::505435643729:policy/cybertank-default-cluster-autoscaler]
+module.vpc.aws_vpc.this[0]: Refreshing state... [id=vpc-0eb3cad2a9fe264da]
+aws_dynamodb_table.puntajes: Refreshing state... [id=cybertank-default-scores]
+module.eks.data.aws_partition.current[0]: Read complete after 0s [id=aws]
+data.aws_iam_policy_document.asumir_lambda: Read complete after 0s [id=2690255455]
+module.eks.data.aws_iam_policy_document.assume_role_policy[0]: Read complete after 0s [id=2830595799]
+aws_iam_role.leaderboard: Refreshing state... [id=cybertank-default-leaderboard]
+module.eks.aws_iam_role.this[0]: Refreshing state... [id=cybertank-default-cluster-20261117032001679600000001]
+module.eks.data.aws_iam_policy_document.custom[0]: Reading...
+module.eks.data.aws_iam_policy_document.custom[0]: Read complete after 0s [id=513122117]
+module.eks.aws_iam_policy.custom[0]: Refreshing state... [id=arn:aws:iam::505435643729:policy/cybertank-default-cluster-20261117032001680300000002]
+module.eks.data.aws_caller_identity.current[0]: Read complete after 0s [id=505435643729]
+module.eks.data.aws_iam_session_context.current[0]: Reading...
+module.eks.data.aws_iam_session_context.current[0]: Read complete after 0s [id=arn:aws:iam::505435643729:user/admin-25460322]
+data.aws_availability_zones.disponibles: Read complete after 0s [id=us-east-2]
+module.eks.module.eks_managed_node_group["juego"].data.aws_caller_identity.current: Reading...
+module.eks.module.eks_managed_node_group["juego"].data.aws_partition.current: Reading...
+module.eks.module.eks_managed_node_group["juego"].data.aws_partition.current: Read complete after 0s [id=aws]
+module.eks.module.eks_managed_node_group["juego"].data.aws_iam_policy_document.assume_role_policy[0]: Reading...
+module.eks.module.eks_managed_node_group["juego"].data.aws_iam_policy_document.assume_role_policy[0]: Read complete after 0s [id=2560088296]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role.this[0]: Refreshing state... [id=juego-eks-node-group-20261117032003342200000003]
+module.eks.module.eks_managed_node_group["juego"].data.aws_caller_identity.current: Read complete after 0s [id=505435643729]
+module.eks.aws_iam_role_policy_attachment.custom[0]: Refreshing state... [id=cybertank-default-cluster-20261117032001679600000001-20261117032004629000000007]
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSVPCResourceController"]: Refreshing state... [id=cybertank-default-cluster-20261117032001679600000001-20261117032004466400000005]
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSClusterPolicy"]: Refreshing state... [id=cybertank-default-cluster-20261117032001679600000001-20261117032004466400000006]
+aws_iam_role_policy_attachment.logs: Refreshing state... [id=cybertank-default-leaderboard-20261117032004344900000004]
+aws_iam_role_policy.tabla: Refreshing state... [id=cybertank-default-leaderboard:acceso-tabla]
+aws_lambda_function.leaderboard: Refreshing state... [id=cybertank-default-leaderboard]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEKS_CNI_Policy"]: Refreshing state... [id=juego-eks-node-group-20261117032003342200000003-20261117032005136500000009]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.additional["autoscaler"]: Refreshing state... [id=juego-eks-node-group-20261117032003342200000003-2026111703200526950000000b]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEKSWorkerNodePolicy"]: Refreshing state... [id=juego-eks-node-group-20261117032003342200000003-20261117032005105200000008]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEC2ContainerRegistryReadOnly"]: Refreshing state... [id=juego-eks-node-group-20261117032003342200000003-2026111703200521500000000a]
+module.vpc.aws_default_route_table.default[0]: Refreshing state... [id=rtb-04082b72118af631d]
+module.vpc.aws_default_security_group.this[0]: Refreshing state... [id=sg-0f952c194b0381fc0]
+module.vpc.aws_route_table.public[0]: Refreshing state... [id=rtb-0e69bb5c8a0c7f73d]
+module.eks.aws_security_group.cluster[0]: Refreshing state... [id=sg-0efbe5b9d9dc49ba4]
+module.eks.aws_security_group.node[0]: Refreshing state... [id=sg-0ba5c432ee4fe5af0]
+module.vpc.aws_default_network_acl.this[0]: Refreshing state... [id=acl-038a03035e05d11f5]
+module.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-0f1ea40987c4a6ae8]
+module.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-0088f66f5d913f5c9]
+module.vpc.aws_internet_gateway.this[0]: Refreshing state... [id=igw-0dc7af8718a76c90e]
+aws_apigatewayv2_api.leaderboard: Refreshing state... [id=82pystfmgl]
+module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Refreshing state... [id=sgrule-3814471205]
+module.eks.aws_security_group_rule.node["egress_all"]: Refreshing state... [id=sgrule-3186240125]
+module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Refreshing state... [id=sgrule-648584612]
+module.eks.aws_security_group_rule.node["plano_control"]: Refreshing state... [id=sgrule-107745923]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Refreshing state... [id=sgrule-2922799722]
+module.eks.aws_security_group_rule.node["ingress_cluster_6443_webhook"]: Refreshing state... [id=sgrule-1908650171]
+module.eks.aws_security_group_rule.node["ingress_nodes_ephemeral"]: Refreshing state... [id=sgrule-1382761532]
+module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Refreshing state... [id=sgrule-2560874072]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Refreshing state... [id=sgrule-174702981]
+module.eks.aws_security_group_rule.node["ingress_cluster_8443_webhook"]: Refreshing state... [id=sgrule-1654623386]
+module.eks.aws_security_group_rule.node["ingress_cluster_4443_webhook"]: Refreshing state... [id=sgrule-3095516973]
+module.eks.aws_security_group_rule.node["partidas_tcp"]: Refreshing state... [id=sgrule-1207820157]
+module.eks.aws_security_group_rule.node["partidas_udp"]: Refreshing state... [id=sgrule-959593957]
+module.vpc.aws_route.public_internet_gateway[0]: Refreshing state... [id=r-rtb-0e69bb5c8a0c7f73d1080289494]
+module.eks.aws_security_group_rule.node["ingress_cluster_9443_webhook"]: Refreshing state... [id=sgrule-104775505]
+module.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0adfa09928014d8f2]
+module.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-0b8a435a4b5d29c74]
+aws_lambda_permission.api: Refreshing state... [id=PermitirApiGateway]
+module.eks.aws_eks_cluster.this[0]: Refreshing state... [id=cybertank-default]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the
+last "terraform apply" which may have affected this plan:
+
+  # module.eks.aws_eks_cluster.this[0] has changed
+  ~ resource "aws_eks_cluster" "this" {
+      + arn                           = "arn:aws:eks:us-east-2:505435643729:cluster/cybertank-default"
+      + certificate_authority         = [
+          + {
+              + data = "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNVENDQWhtZ0F3SUJBZ0lRRGFPakMxUEtIRlU5MzltN2wzU1pBakFOQmdrcWhraUc5dzBCQVFzRkFEQW4KTVJBd0RnWURWUVFLRXdkQlYxTWdSVXRUTVJNd0VRWURWUVFERXdwcmRXSmxjbTVsZEdWek1CNFhEVEkyTVRFeApOekF6TWpFeE5sb1hEVE14TVRFeE5qQXpNakV4Tmxvd0p6RVFNQTRHQTFVRUNoTUhRVmRUSUVWTFV6RVRNQkVHCkExVUVBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUIKQU1BT0tSNFlEMFVEVVg4eElVS0FoTk1zdVpxWGdVaTJub1NtRlR5WjhPUG5hWG02ektRTXNzWkFGQ3IyTncxVQpTT1BJUlBwamZqMGdMUGVtcHd3NXFOZ2R4R3lSZGtjWHdic0lTNXRxczNrVEJnTEVrVTBqREIvdWlCbHUvK2FICndpeCtxU1poVFhJVjhSc1FHS24xV0pHM0doZkhUOW45Skt5V2ZCZDhhbmduUkxmUzVLemF1emd3K0V3SEx3MTUKd2RQVlRFdWlCWTl1cHVhWnRmanh1SUpSbWtMcHBkSCtxZFlUdTFnTitPcFZMbmNWbkszOTg2NXg4N0lSVy9uaApZUUk5alZtN3JQZ3pQUFIrL1VxelFXRVdPaVpTMWV4eVBpR3BxSXBnYnFGYVVTelZEeTFWcUtNd3VKYzVvSkhYCnljcDd6QWxSek9EY1BmK0M0YTVyVUFrQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWQKRXdFQi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZMaTJyeXdhVUtFM3FWVDlJZDFFZ0ZLbGlkSnZNQlVHQTFVZApFUVFPTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRGVKYmpEVWZScFR6UzRPCmZ0Y2IwRHhaRVltd252WDQwTzZpVEJyLzZxWjBBdXlCS3BCaVh6akh4anlqc3QrUzNCTHc1ODA2TjcxSFd3OVUKcUJvajdLK2NvOEM1Rjkwb2pESlJ1NnlGSllGa2JHbWlIS0VuMkdjU043WEE0eFpZNlhPcEM0a2kwbnRwVlAwTwo2OHJ0bENSRzdFUjRyNkwyV2xnZmZITkZvdTUwTXlySjkwS21sdUtQVFNOQ3pQT3h4UGpITzIzRk5TcGhqZkhjCmJWcjhGUGNlcmRhVmc5dHF4Qno3Yy8wV2hwSnNpL00zQXRlNVU4NGFJR3NGckVYSFRLbmcraFFraSs2L29NakcKK3l3b0tMYVp4WDE3dkphRUkvVEMySDI4V0pJMEthTFhOV3B5c3BpRFdyVXQxTnV4aElGSTNEZXBpTGpvcytGdQp0MmVSbHhnPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg=="
+            },
+        ]
+      + endpoint                      = "https://61AEF6D91CA87A6D9B39B58812F69E33.gr7.us-east-2.eks.amazonaws.com"
+        id                            = "cybertank-default"
+      + identity                      = [
+          + {
+              + oidc = [
+                  + {
+                      + issuer = "https://oidc.eks.us-east-2.amazonaws.com/id/61AEF6D91CA87A6D9B39B58812F69E33"
+                    },
+                ]
+            },
+        ]
+        name                          = "cybertank-default"
+      + platform_version              = "eks.53"
+      + status                        = "ACTIVE"
+        tags                          = {
+            "terraform-aws-modules" = "eks"
+        }
+        # (4 unchanged attributes hidden)
+
+      ~ kubernetes_network_config {
+          + service_ipv4_cidr = "172.20.0.0/16"
+            # (2 unchanged attributes hidden)
+
+          + elastic_load_balancing {
+              + enabled = false
+            }
+        }
+
+      ~ vpc_config {
+          + cluster_security_group_id = "sg-0d77644fdee334ec7"
+            # (6 unchanged attributes hidden)
+        }
+
+        # (2 unchanged blocks hidden)
+    }
+
+
+Unless you have made equivalent changes to your configuration, or ignored the
+relevant attributes using ignore_changes, the following plan may include
+actions to undo or respond to these changes.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
++/- create replacement and then destroy
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # helm_release.agones will be created
+  + resource "helm_release" "agones" {
+      + atomic                     = false
+      + chart                      = "agones"
+      + cleanup_on_fail            = false
+      + create_namespace           = true
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + manifest                   = (known after apply)
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "agones"
+      + namespace                  = "agones-system"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "https://agones.dev/chart/stable"
+      + reset_values               = false
+      + reuse_values               = false
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "1.59.0"
+      + wait                       = true
+      + wait_for_jobs              = false
+    }
+
+  # helm_release.cluster_autoscaler will be created
+  + resource "helm_release" "cluster_autoscaler" {
+      + atomic                     = false
+      + chart                      = "cluster-autoscaler"
+      + cleanup_on_fail            = false
+      + create_namespace           = false
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + manifest                   = (known after apply)
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "cluster-autoscaler"
+      + namespace                  = "kube-system"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "https://kubernetes.github.io/autoscaler"
+      + reset_values               = false
+      + reuse_values               = false
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "9.60.0"
+      + wait                       = true
+      + wait_for_jobs              = false
+
+      + set {
+          + name  = "autoDiscovery.clusterName"
+          + value = "cybertank-default"
+            # (1 unchanged attribute hidden)
+        }
+      + set {
+          + name  = "awsRegion"
+          + value = "us-east-2"
+            # (1 unchanged attribute hidden)
+        }
+      + set {
+          + name  = "image.tag"
+          + value = "v1.33.6"
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.eks.data.aws_eks_addon_version.this["coredns"] will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "aws_eks_addon_version" "this" {
+      + addon_name         = "coredns"
+      + id                 = (known after apply)
+      + kubernetes_version = "1.33"
+      + version            = (known after apply)
+    }
+
+  # module.eks.data.aws_eks_addon_version.this["kube-proxy"] will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "aws_eks_addon_version" "this" {
+      + addon_name         = "kube-proxy"
+      + id                 = (known after apply)
+      + kubernetes_version = "1.33"
+      + version            = (known after apply)
+    }
+
+  # module.eks.data.aws_eks_addon_version.this["vpc-cni"] will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "aws_eks_addon_version" "this" {
+      + addon_name         = "vpc-cni"
+      + id                 = (known after apply)
+      + kubernetes_version = "1.33"
+      + version            = (known after apply)
+    }
+
+  # module.eks.aws_eks_access_entry.this["cluster_creator"] will be created
+  + resource "aws_eks_access_entry" "this" {
+      + access_entry_arn  = (known after apply)
+      + cluster_name      = (known after apply)
+      + created_at        = (known after apply)
+      + id                = (known after apply)
+      + kubernetes_groups = (known after apply)
+      + modified_at       = (known after apply)
+      + principal_arn     = "arn:aws:iam::505435643729:user/admin-25460322"
+      + tags_all          = {
+          + "Entorno"    = "default"
+          + "Gestionado" = "terraform"
+          + "Proyecto"   = "cybertank"
+        }
+      + type              = "STANDARD"
+      + user_name         = (known after apply)
+    }
+
+  # module.eks.aws_eks_access_entry.this["github"] will be created
+  + resource "aws_eks_access_entry" "this" {
+      + access_entry_arn  = (known after apply)
+      + cluster_name      = (known after apply)
+      + created_at        = (known after apply)
+      + id                = (known after apply)
+      + kubernetes_groups = (known after apply)
+      + modified_at       = (known after apply)
+      + principal_arn     = "arn:aws:iam::505435643729:user/github-deployer"
+      + tags_all          = {
+          + "Entorno"    = "default"
+          + "Gestionado" = "terraform"
+          + "Proyecto"   = "cybertank"
+        }
+      + type              = "STANDARD"
+      + user_name         = (known after apply)
+    }
+
+  # module.eks.aws_eks_access_policy_association.this["cluster_creator_admin"] will be created
+  + resource "aws_eks_access_policy_association" "this" {
+      + associated_at = (known after apply)
+      + cluster_name  = (known after apply)
+      + id            = (known after apply)
+      + modified_at   = (known after apply)
+      + policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+      + principal_arn = "arn:aws:iam::505435643729:user/admin-25460322"
+
+      + access_scope {
+          + type = "cluster"
+        }
+    }
+
+  # module.eks.aws_eks_access_policy_association.this["github_admin"] will be created
+  + resource "aws_eks_access_policy_association" "this" {
+      + associated_at = (known after apply)
+      + cluster_name  = (known after apply)
+      + id            = (known after apply)
+      + modified_at   = (known after apply)
+      + policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+      + principal_arn = "arn:aws:iam::505435643729:user/github-deployer"
+
+      + access_scope {
+          + type = "cluster"
+        }
+    }
+
+  # module.eks.aws_eks_addon.before_compute["vpc-cni"] will be created
+  + resource "aws_eks_addon" "before_compute" {
+      + addon_name                  = "vpc-cni"
+      + addon_version               = (known after apply)
+      + arn                         = (known after apply)
+      + cluster_name                = (known after apply)
+      + configuration_values        = (known after apply)
+      + created_at                  = (known after apply)
+      + id                          = (known after apply)
+      + modified_at                 = (known after apply)
+      + preserve                    = true
+      + resolve_conflicts_on_create = "OVERWRITE"
+      + resolve_conflicts_on_update = "OVERWRITE"
+      + tags_all                    = {
+          + "Entorno"    = "default"
+          + "Gestionado" = "terraform"
+          + "Proyecto"   = "cybertank"
+        }
+
+      + timeouts {}
+    }
+
+  # module.eks.aws_eks_addon.this["coredns"] will be created
+  + resource "aws_eks_addon" "this" {
+      + addon_name                  = "coredns"
+      + addon_version               = (known after apply)
+      + arn                         = (known after apply)
+      + cluster_name                = (known after apply)
+      + configuration_values        = (known after apply)
+      + created_at                  = (known after apply)
+      + id                          = (known after apply)
+      + modified_at                 = (known after apply)
+      + preserve                    = true
+      + resolve_conflicts_on_create = "OVERWRITE"
+      + resolve_conflicts_on_update = "OVERWRITE"
+      + tags_all                    = {
+          + "Entorno"    = "default"
+          + "Gestionado" = "terraform"
+          + "Proyecto"   = "cybertank"
+        }
+
+      + timeouts {}
+    }
+
+  # module.eks.aws_eks_addon.this["kube-proxy"] will be created
+  + resource "aws_eks_addon" "this" {
+      + addon_name                  = "kube-proxy"
+      + addon_version               = (known after apply)
+      + arn                         = (known after apply)
+      + cluster_name                = (known after apply)
+      + configuration_values        = (known after apply)
+      + created_at                  = (known after apply)
+      + id                          = (known after apply)
+      + modified_at                 = (known after apply)
+      + preserve                    = true
+      + resolve_conflicts_on_create = "OVERWRITE"
+      + resolve_conflicts_on_update = "OVERWRITE"
+      + tags_all                    = {
+          + "Entorno"    = "default"
+          + "Gestionado" = "terraform"
+          + "Proyecto"   = "cybertank"
+        }
+
+      + timeouts {}
+    }
+
+  # module.eks.aws_eks_cluster.this[0] is tainted, so must be replaced
++/- resource "aws_eks_cluster" "this" {
+      ~ arn                           = "arn:aws:eks:us-east-2:505435643729:cluster/cybertank-default" -> (known after apply)
+      ~ certificate_authority         = [
+          - {
+              - data = "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNVENDQWhtZ0F3SUJBZ0lRRGFPakMxUEtIRlU5MzltN2wzU1pBakFOQmdrcWhraUc5dzBCQVFzRkFEQW4KTVJBd0RnWURWUVFLRXdkQlYxTWdSVXRUTVJNd0VRWURWUVFERXdwcmRXSmxjbTVsZEdWek1CNFhEVEkyTVRFeApOekF6TWpFeE5sb1hEVE14TVRFeE5qQXpNakV4Tmxvd0p6RVFNQTRHQTFVRUNoTUhRVmRUSUVWTFV6RVRNQkVHCkExVUVBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUIKQU1BT0tSNFlEMFVEVVg4eElVS0FoTk1zdVpxWGdVaTJub1NtRlR5WjhPUG5hWG02ektRTXNzWkFGQ3IyTncxVQpTT1BJUlBwamZqMGdMUGVtcHd3NXFOZ2R4R3lSZGtjWHdic0lTNXRxczNrVEJnTEVrVTBqREIvdWlCbHUvK2FICndpeCtxU1poVFhJVjhSc1FHS24xV0pHM0doZkhUOW45Skt5V2ZCZDhhbmduUkxmUzVLemF1emd3K0V3SEx3MTUKd2RQVlRFdWlCWTl1cHVhWnRmanh1SUpSbWtMcHBkSCtxZFlUdTFnTitPcFZMbmNWbkszOTg2NXg4N0lSVy9uaApZUUk5alZtN3JQZ3pQUFIrL1VxelFXRVdPaVpTMWV4eVBpR3BxSXBnYnFGYVVTelZEeTFWcUtNd3VKYzVvSkhYCnljcDd6QWxSek9EY1BmK0M0YTVyVUFrQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWQKRXdFQi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZMaTJyeXdhVUtFM3FWVDlJZDFFZ0ZLbGlkSnZNQlVHQTFVZApFUVFPTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRGVKYmpEVWZScFR6UzRPCmZ0Y2IwRHhaRVltd252WDQwTzZpVEJyLzZxWjBBdXlCS3BCaVh6akh4anlqc3QrUzNCTHc1ODA2TjcxSFd3OVUKcUJvajdLK2NvOEM1Rjkwb2pESlJ1NnlGSllGa2JHbWlIS0VuMkdjU043WEE0eFpZNlhPcEM0a2kwbnRwVlAwTwo2OHJ0bENSRzdFUjRyNkwyV2xnZmZITkZvdTUwTXlySjkwS21sdUtQVFNOQ3pQT3h4UGpITzIzRk5TcGhqZkhjCmJWcjhGUGNlcmRhVmc5dHF4Qno3Yy8wV2hwSnNpL00zQXRlNVU4NGFJR3NGckVYSFRLbmcraFFraSs2L29NakcKK3l3b0tMYVp4WDE3dkphRUkvVEMySDI4V0pJMEthTFhOV3B5c3BpRFdyVXQxTnV4aElGSTNEZXBpTGpvcytGdQp0MmVSbHhnPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg=="
+            },
+        ] -> (known after apply)
+      + cluster_id                    = (known after apply)
+      ~ created_at                    = "2026-11-17T03:21:05Z" -> (known after apply)
+      - enabled_cluster_log_types     = [] -> null
+      ~ endpoint                      = "https://61AEF6D91CA87A6D9B39B58812F69E33.gr7.us-east-2.eks.amazonaws.com" -> (known after apply)
+      ~ id                            = "cybertank-default" -> (known after apply)
+      ~ identity                      = [
+          - {
+              - oidc = [
+                  - {
+                      - issuer = "https://oidc.eks.us-east-2.amazonaws.com/id/61AEF6D91CA87A6D9B39B58812F69E33"
+                    },
+                ]
+            },
+        ] -> (known after apply)
+        name                          = "cybertank-default"
+      ~ platform_version              = "eks.53" -> (known after apply)
+      ~ status                        = "ACTIVE" -> (known after apply)
+        tags                          = {
+            "terraform-aws-modules" = "eks"
+        }
+        # (4 unchanged attributes hidden)
+
+      ~ kubernetes_network_config {
+          ~ service_ipv4_cidr = "172.20.0.0/16" -> (known after apply)
+          + service_ipv6_cidr = (known after apply)
+            # (1 unchanged attribute hidden)
+
+          ~ elastic_load_balancing (known after apply)
+          - elastic_load_balancing {
+              - enabled = false -> null
+            }
+        }
+
+      ~ upgrade_policy (known after apply)
+      - upgrade_policy {
+          - support_type = "EXTENDED" -> null
+        }
+
+      ~ vpc_config {
+          ~ cluster_security_group_id = "sg-0d77644fdee334ec7" -> (known after apply)
+          ~ vpc_id                    = "vpc-0eb3cad2a9fe264da" -> (known after apply)
+            # (5 unchanged attributes hidden)
+        }
+
+        # (2 unchanged blocks hidden)
+    }
+
+  # module.eks.time_sleep.this[0] will be created
+  + resource "time_sleep" "this" {
+      + create_duration = "30s"
+      + id              = (known after apply)
+      + triggers        = {
+          + "cluster_certificate_authority_data" = (known after apply)
+          + "cluster_endpoint"                   = (known after apply)
+          + "cluster_name"                       = (known after apply)
+          + "cluster_service_cidr"               = (known after apply)
+          + "cluster_version"                    = "1.33"
+        }
+    }
+
+  # module.eks.module.eks_managed_node_group["juego"].aws_eks_node_group.this[0] will be created
+  + resource "aws_eks_node_group" "this" {
+      + ami_type               = (known after apply)
+      + arn                    = (known after apply)
+      + capacity_type          = (known after apply)
+      + cluster_name           = (known after apply)
+      + disk_size              = (known after apply)
+      + id                     = (known after apply)
+      + instance_types         = [
+          + "c7i-flex.large",
+        ]
+      + labels                 = {
+          + "rol" = "juego"
+        }
+      + node_group_name        = (known after apply)
+      + node_group_name_prefix = "juego-"
+      + node_role_arn          = "arn:aws:iam::505435643729:role/juego-eks-node-group-20261117032003342200000003"
+      + release_version        = (known after apply)
+      + resources              = (known after apply)
+      + status                 = (known after apply)
+      + subnet_ids             = [
+          + "subnet-0088f66f5d913f5c9",
+          + "subnet-0f1ea40987c4a6ae8",
+        ]
+      + tags                   = {
+          + "Name" = "juego"
+        }
+      + tags_all               = {
+          + "Entorno"    = "default"
+          + "Gestionado" = "terraform"
+          + "Name"       = "juego"
+          + "Proyecto"   = "cybertank"
+        }
+      + version                = "1.33"
+
+      + launch_template {
+          + id      = (known after apply)
+          + name    = (known after apply)
+          + version = (known after apply)
+        }
+
+      + node_repair_config (known after apply)
+
+      + scaling_config {
+          + desired_size = 3
+          + max_size     = 12
+          + min_size     = 3
+        }
+
+      + timeouts {}
+
+      + update_config {
+          + max_unavailable_percentage = 33
+        }
+    }
+
+  # module.eks.module.eks_managed_node_group["juego"].aws_launch_template.this[0] will be created
+  + resource "aws_launch_template" "this" {
+      + arn                    = (known after apply)
+      + default_version        = (known after apply)
+      + description            = "Custom launch template for juego EKS managed node group"
+      + id                     = (known after apply)
+      + latest_version         = (known after apply)
+      + name                   = (known after apply)
+      + name_prefix            = "juego-"
+      + tags_all               = {
+          + "Entorno"    = "default"
+          + "Gestionado" = "terraform"
+          + "Proyecto"   = "cybertank"
+        }
+      + update_default_version = true
+      + vpc_security_group_ids = [
+          + "sg-0ba5c432ee4fe5af0",
+        ]
+        # (2 unchanged attributes hidden)
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_protocol_ipv6          = (known after apply)
+          + http_put_response_hop_limit = 2
+          + http_tokens                 = "required"
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + monitoring {
+          + enabled = true
+        }
+
+      + tag_specifications {
+          + resource_type = "instance"
+          + tags          = {
+              + "Name" = "juego"
+            }
+        }
+      + tag_specifications {
+          + resource_type = "network-interface"
+          + tags          = {
+              + "Name" = "juego"
+            }
+        }
+      + tag_specifications {
+          + resource_type = "volume"
+          + tags          = {
+              + "Name" = "juego"
+            }
+        }
+    }
+
+  # module.eks.module.eks_managed_node_group["juego"].module.user_data.null_resource.validate_cluster_service_cidr will be created
+  + resource "null_resource" "validate_cluster_service_cidr" {
+      + id = (known after apply)
+    }
+
+Plan: 14 to add, 0 to change, 1 to destroy.
+module.eks.aws_eks_cluster.this[0]: Creating...
+terraform : 
+At line:1 char:624
++ ... ithub-deployer"; terraform apply -no-color -auto-approve 2>&1 | Out-F ...
++                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Error: creating EKS Cluster (cybertank-default): operation error EKS: CreateCluster, https response error StatusCode: 
+409, RequestID: c1a15f3f-d930-47c0-98d4-fa8483d02946, ResourceInUseException: Cluster already exists with name: 
+cybertank-default
+
+  with module.eks.aws_eks_cluster.this[0],
+  on .terraform\modules\eks\main.tf line 35, in resource "aws_eks_cluster" "this":
+  35: resource "aws_eks_cluster" "this" {
+

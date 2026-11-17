@@ -18,7 +18,15 @@ resource "helm_release" "agones" {
   version          = "1.59.0" # última con soporte para Kubernetes 1.33
   namespace        = "agones-system"
   create_namespace = true
+  timeout          = 600 # el balanceador del allocator tarda más de los 5 min por omisión
   depends_on       = [module.eks]
+
+  # El ping UDP pide un LoadBalancer UDP; el balanceador clásico de EKS no lo soporta y se
+  # queda en <pending> para siempre (Helm nunca termina de esperar). El juego no lo usa.
+  set {
+    name  = "agones.ping.udp.expose"
+    value = "false"
+  }
 }
 
 # ---------------------------------------------------------------- Cluster Autoscaler (capa de nodos)

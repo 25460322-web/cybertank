@@ -561,6 +561,10 @@ En <https://calculator.aws>: Lambda con 5 000 000 peticiones/mes, 50 ms, 256 MB 
 ```bash
 eksctl delete cluster -f aws/cluster.yaml
 ```
+> **En esta cuenta** `eksctl delete` falla al intentar borrar el proveedor OIDC (SCP). Tras limpiar
+> los balanceadores, se borran los stacks a mano:
+> `aws cloudformation delete-stack --stack-name eksctl-cybertank-nodegroup-juego` (esperar) y
+> `aws cloudformation delete-stack --stack-name eksctl-cybertank-cluster`.
 📸 **C65** — `eksctl delete cluster` terminado. (En 3.6 todo se vuelve a crear con Terraform.)
 
 ---
@@ -584,10 +588,15 @@ export CUENTA=$(aws sts get-caller-identity --query Account --output text)
 cd infra
 terraform init
 terraform fmt && terraform validate
-# El repositorio ECR ya existe desde 3.3: se importa en lugar de recrearlo
-terraform import aws_ecr_repository.servidor cybertank-server
-terraform plan -var rol_github_arn=arn:aws:iam::$CUENTA:role/github-deployer -out plan.tfplan
+# El repositorio ECR ya existe desde 3.3: se importa con el bloque `import` de infra/importar.tf
+export TF_VAR_rol_github_arn=arn:aws:iam::$CUENTA:user/github-deployer   # usuario IAM (OIDC bloqueado)
+terraform plan -out plan.tfplan
 ```
+> **En esta cuenta:** `terraform import aws_ecr_repository.servidor cybertank-server` falla con
+> *"provider helm depends on values that cannot be determined until apply"* (el proveedor helm
+> necesita un clúster que aún no existe). Se usa el **import declarativo** (Terraform ≥ 1.5):
+> el `plan` muestra *1 to import*. Además `infra/eks.tf` lleva `enable_irsa = false` y el
+> Cluster Autoscaler recibe sus permisos en el rol del nodo (la SCP bloquea OIDC).
 📸 **C67** — `terraform init` exitoso (proveedores aws, helm, archive y módulos descargados).
 📸 **C68** — `terraform validate`: *Success! The configuration is valid.*
 📸 **C69** — `terraform import` exitoso (concepto: traer recursos existentes al estado).

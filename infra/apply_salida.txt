@@ -1,0 +1,241 @@
+﻿aws_ecr_repository.servidor: Importing... [id=cybertank-server]
+aws_ecr_repository.servidor: Import complete [id=cybertank-server]
+aws_iam_role.leaderboard: Creating...
+aws_dynamodb_table.puntajes: Creating...
+module.eks.aws_iam_policy.custom[0]: Creating...
+aws_ecr_repository.servidor: Modifying... [id=cybertank-server]
+module.vpc.aws_vpc.this[0]: Creating...
+aws_iam_policy.autoscaler: Creating...
+module.eks.aws_iam_role.this[0]: Creating...
+aws_iam_policy.autoscaler: Creation complete after 1s [id=arn:aws:iam::505435643729:policy/cybertank-default-cluster-autoscaler]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role.this[0]: Creating...
+aws_ecr_repository.servidor: Modifications complete after 1s [id=cybertank-server]
+module.eks.aws_iam_policy.custom[0]: Creation complete after 2s [id=arn:aws:iam::505435643729:policy/cybertank-default-cluster-20261117032001680300000002]
+aws_iam_role.leaderboard: Creation complete after 2s [id=cybertank-default-leaderboard]
+aws_iam_role_policy_attachment.logs: Creating...
+module.eks.aws_iam_role.this[0]: Creation complete after 2s [id=cybertank-default-cluster-20261117032001679600000001]
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSClusterPolicy"]: Creating...
+module.eks.aws_iam_role_policy_attachment.custom[0]: Creating...
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSVPCResourceController"]: Creating...
+aws_iam_role_policy_attachment.logs: Creation complete after 1s [id=cybertank-default-leaderboard-20261117032004344900000004]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role.this[0]: Creation complete after 2s [id=juego-eks-node-group-20261117032003342200000003]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEC2ContainerRegistryReadOnly"]: Creating...
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEKSWorkerNodePolicy"]: Creating...
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEKS_CNI_Policy"]: Creating...
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.additional["autoscaler"]: Creating...
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSClusterPolicy"]: Creation complete after 1s [id=cybertank-default-cluster-20261117032001679600000001-20261117032004466400000006]
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSVPCResourceController"]: Creation complete after 1s [id=cybertank-default-cluster-20261117032001679600000001-20261117032004466400000005]
+module.eks.aws_iam_role_policy_attachment.custom[0]: Creation complete after 1s [id=cybertank-default-cluster-20261117032001679600000001-20261117032004629000000007]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEKSWorkerNodePolicy"]: Creation complete after 0s [id=juego-eks-node-group-20261117032003342200000003-20261117032005105200000008]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEKS_CNI_Policy"]: Creation complete after 0s [id=juego-eks-node-group-20261117032003342200000003-20261117032005136500000009]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.this["AmazonEC2ContainerRegistryReadOnly"]: Creation complete after 0s [id=juego-eks-node-group-20261117032003342200000003-2026111703200521500000000a]
+module.eks.module.eks_managed_node_group["juego"].aws_iam_role_policy_attachment.additional["autoscaler"]: Creation complete after 0s [id=juego-eks-node-group-20261117032003342200000003-2026111703200526950000000b]
+aws_dynamodb_table.puntajes: Still creating... [00m10s elapsed]
+module.vpc.aws_vpc.this[0]: Still creating... [00m10s elapsed]
+aws_dynamodb_table.puntajes: Creation complete after 14s [id=cybertank-default-scores]
+aws_iam_role_policy.tabla: Creating...
+aws_lambda_function.leaderboard: Creating...
+aws_iam_role_policy.tabla: Creation complete after 3s [id=cybertank-default-leaderboard:acceso-tabla]
+module.vpc.aws_vpc.this[0]: Creation complete after 18s [id=vpc-0eb3cad2a9fe264da]
+module.vpc.aws_internet_gateway.this[0]: Creating...
+module.vpc.aws_default_route_table.default[0]: Creating...
+module.vpc.aws_subnet.public[1]: Creating...
+module.vpc.aws_subnet.public[0]: Creating...
+module.vpc.aws_default_security_group.this[0]: Creating...
+module.eks.aws_security_group.cluster[0]: Creating...
+module.vpc.aws_route_table.public[0]: Creating...
+module.vpc.aws_default_network_acl.this[0]: Creating...
+module.eks.aws_security_group.node[0]: Creating...
+aws_lambda_function.leaderboard: Still creating... [00m10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still creating... [00m10s elapsed]
+module.vpc.aws_default_route_table.default[0]: Still creating... [00m10s elapsed]
+module.eks.aws_security_group.cluster[0]: Still creating... [00m10s elapsed]
+module.vpc.aws_subnet.public[0]: Still creating... [00m10s elapsed]
+module.vpc.aws_default_security_group.this[0]: Still creating... [00m10s elapsed]
+module.vpc.aws_subnet.public[1]: Still creating... [00m10s elapsed]
+module.vpc.aws_route_table.public[0]: Still creating... [00m10s elapsed]
+module.vpc.aws_default_network_acl.this[0]: Still creating... [00m10s elapsed]
+module.eks.aws_security_group.node[0]: Still creating... [00m10s elapsed]
+aws_lambda_function.leaderboard: Still creating... [00m20s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still creating... [00m20s elapsed]
+module.vpc.aws_default_security_group.this[0]: Still creating... [00m20s elapsed]
+module.eks.aws_security_group.cluster[0]: Still creating... [00m20s elapsed]
+module.vpc.aws_subnet.public[0]: Still creating... [00m20s elapsed]
+module.vpc.aws_subnet.public[1]: Still creating... [00m20s elapsed]
+module.vpc.aws_default_route_table.default[0]: Still creating... [00m20s elapsed]
+module.vpc.aws_route_table.public[0]: Still creating... [00m20s elapsed]
+module.vpc.aws_default_network_acl.this[0]: Still creating... [00m20s elapsed]
+module.eks.aws_security_group.node[0]: Still creating... [00m20s elapsed]
+aws_lambda_function.leaderboard: Creation complete after 26s [id=cybertank-default-leaderboard]
+module.vpc.aws_internet_gateway.this[0]: Still creating... [00m30s elapsed]
+module.vpc.aws_subnet.public[0]: Still creating... [00m30s elapsed]
+module.vpc.aws_default_security_group.this[0]: Still creating... [00m30s elapsed]
+module.vpc.aws_default_route_table.default[0]: Still creating... [00m30s elapsed]
+module.vpc.aws_subnet.public[1]: Still creating... [00m30s elapsed]
+module.eks.aws_security_group.cluster[0]: Still creating... [00m30s elapsed]
+module.vpc.aws_route_table.public[0]: Still creating... [00m30s elapsed]
+module.vpc.aws_default_network_acl.this[0]: Still creating... [00m30s elapsed]
+module.eks.aws_security_group.node[0]: Still creating... [00m30s elapsed]
+module.vpc.aws_default_route_table.default[0]: Creation complete after 33s [id=rtb-04082b72118af631d]
+module.vpc.aws_internet_gateway.this[0]: Creation complete after 33s [id=igw-0dc7af8718a76c90e]
+module.vpc.aws_route_table.public[0]: Creation complete after 33s [id=rtb-0e69bb5c8a0c7f73d]
+module.vpc.aws_default_security_group.this[0]: Creation complete after 33s [id=sg-0f952c194b0381fc0]
+module.vpc.aws_default_network_acl.this[0]: Creation complete after 33s [id=acl-038a03035e05d11f5]
+module.eks.aws_security_group.cluster[0]: Creation complete after 33s [id=sg-0efbe5b9d9dc49ba4]
+module.eks.aws_security_group.node[0]: Creation complete after 33s [id=sg-0ba5c432ee4fe5af0]
+module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Creating...
+module.eks.aws_security_group_rule.node["ingress_cluster_8443_webhook"]: Creating...
+module.eks.aws_security_group_rule.node["ingress_cluster_4443_webhook"]: Creating...
+module.eks.aws_security_group_rule.node["ingress_cluster_6443_webhook"]: Creating...
+module.vpc.aws_route.public_internet_gateway[0]: Creating...
+module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Creating...
+module.eks.aws_security_group_rule.node["egress_all"]: Creating...
+aws_apigatewayv2_api.leaderboard: Creating...
+module.eks.aws_security_group_rule.node["ingress_cluster_8443_webhook"]: Creation complete after 1s [id=sgrule-1654623386]
+module.eks.aws_security_group_rule.node["partidas_udp"]: Creating...
+module.vpc.aws_route.public_internet_gateway[0]: Creation complete after 1s [id=r-rtb-0e69bb5c8a0c7f73d1080289494]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Creating...
+aws_apigatewayv2_api.leaderboard: Creation complete after 2s [id=82pystfmgl]
+module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Creating...
+module.eks.aws_security_group_rule.node["egress_all"]: Creation complete after 2s [id=sgrule-3186240125]
+module.eks.aws_security_group_rule.node["plano_control"]: Creating...
+module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Creation complete after 2s [id=sgrule-2560874072]
+module.eks.aws_security_group_rule.node["ingress_nodes_ephemeral"]: Creating...
+module.eks.aws_security_group_rule.node["ingress_cluster_4443_webhook"]: Creation complete after 3s [id=sgrule-3095516973]
+module.eks.aws_security_group_rule.node["partidas_tcp"]: Creating...
+module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Creation complete after 4s [id=sgrule-174702981]
+module.eks.aws_security_group_rule.node["ingress_cluster_9443_webhook"]: Creating...
+module.vpc.aws_subnet.public[0]: Creation complete after 37s [id=subnet-0088f66f5d913f5c9]
+module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Creating...
+module.eks.aws_security_group_rule.node["ingress_cluster_6443_webhook"]: Creation complete after 5s [id=sgrule-1908650171]
+aws_lambda_permission.api: Creating...
+module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Creation complete after 1s [id=sgrule-3814471205]
+aws_lambda_permission.api: Creation complete after 0s [id=PermitirApiGateway]
+module.eks.aws_security_group_rule.node["partidas_udp"]: Creation complete after 5s [id=sgrule-959593957]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Creation complete after 6s [id=sgrule-2922799722]
+module.vpc.aws_subnet.public[1]: Still creating... [00m40s elapsed]
+module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Creation complete after 6s [id=sgrule-648584612]
+module.eks.aws_security_group_rule.node["plano_control"]: Creation complete after 6s [id=sgrule-107745923]
+module.vpc.aws_subnet.public[1]: Creation complete after 42s [id=subnet-0f1ea40987c4a6ae8]
+module.vpc.aws_route_table_association.public[1]: Creating...
+module.vpc.aws_route_table_association.public[0]: Creating...
+module.eks.aws_security_group_rule.node["ingress_nodes_ephemeral"]: Creation complete after 7s [id=sgrule-1382761532]
+module.vpc.aws_route_table_association.public[0]: Creation complete after 0s [id=rtbassoc-0b8a435a4b5d29c74]
+module.vpc.aws_route_table_association.public[1]: Creation complete after 1s [id=rtbassoc-0adfa09928014d8f2]
+module.eks.aws_security_group_rule.node["partidas_tcp"]: Creation complete after 7s [id=sgrule-1207820157]
+module.eks.aws_security_group_rule.node["ingress_cluster_9443_webhook"]: Creation complete after 7s [id=sgrule-104775505]
+module.eks.aws_eks_cluster.this[0]: Creating...
+module.eks.aws_eks_cluster.this[0]: Still creating... [00m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [00m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [00m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [00m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [00m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [01m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [01m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [01m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [01m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [01m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [01m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [02m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [02m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [02m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [02m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [02m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [02m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [03m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [03m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [03m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [03m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [03m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [03m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [04m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [04m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [04m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [04m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [04m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [04m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [05m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [05m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [05m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [05m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [05m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [05m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [06m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [06m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [06m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [06m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [06m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [06m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [07m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [07m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [07m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [07m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [07m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [07m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [08m00s elapsed]
+terraform : 
+At line:1 char:624
++ ... /github-deployer"; terraform apply -no-color plan.tfplan 2>&1 | Out-F ...
++                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Error: failed to upload state: operation error S3: PutObject, https response error StatusCode: 0, RequestID: , HostID: 
+, request send failed, Put 
+"https://cybertank-tfstate-25460322.s3.us-east-2.amazonaws.com/cybertank/terraform.tfstate?x-id=PutObject": dial tcp: 
+lookup cybertank-tfstate-25460322.s3.us-east-2.amazonaws.com: no such host
+
+
+Error: Failed to save state
+
+Error saving state: failed to upload state: operation error S3: PutObject,
+https response error StatusCode: 0, RequestID: , HostID: , request send
+failed, Put
+"https://cybertank-tfstate-25460322.s3.us-east-2.amazonaws.com/cybertank/terraform.tfstate?x-id=PutObject":
+dial tcp: lookup cybertank-tfstate-25460322.s3.us-east-2.amazonaws.com: no
+such host
+
+Error: Failed to persist state to backend
+
+The error shown above has prevented Terraform from writing the updated state
+to the configured backend. To allow for recovery, the state has been written
+to the file "errored.tfstate" in the current working directory.
+
+Running "terraform apply" again at this point will create a forked state,
+making it harder to recover.
+
+To retry writing this state, use the following command:
+    terraform state push errored.tfstate
+
+
+Error: waiting for EKS Cluster (cybertank-default) create: operation error EKS: DescribeCluster, https response error 
+StatusCode: 0, RequestID: , request send failed, Get "https://eks.us-east-2.amazonaws.com/clusters/cybertank-default": 
+dial tcp: lookup eks.us-east-2.amazonaws.com: no such host
+
+  with module.eks.aws_eks_cluster.this[0],
+  on .terraform\modules\eks\main.tf line 35, in resource "aws_eks_cluster" "this":
+  35: resource "aws_eks_cluster" "this" {
+
+
+Error: Error releasing the state lock
+
+Error message: unable to retrieve file from S3 bucket
+'cybertank-tfstate-25460322' with key 'cybertank/terraform.tfstate.tflock':
+operation error S3: GetObject, https response error StatusCode: 0, RequestID:
+, HostID: , request send failed, Get
+"https://cybertank-tfstate-25460322.s3.us-east-2.amazonaws.com/cybertank/terraform.tfstate.tflock?x-id=GetObject":
+dial tcp: lookup cybertank-tfstate-25460322.s3.us-east-2.amazonaws.com: no
+such host
+
+Terraform acquires a lock when accessing your state to prevent others
+running Terraform to potentially modify the state at the same time. An
+error occurred while releasing this lock. This could mean that the lock
+did or did not release properly. If the lock didn't release properly,
+Terraform may not be able to run future commands since it'll appear as if
+the lock is held.
+
+In this scenario, please call the "force-unlock" command to unlock the
+state manually. This is a very dangerous operation since if it is done
+erroneously it could result in two people modifying state at the same time.
+Only call this command if you're certain that the unlock above failed and
+that no one else is holding a lock.
